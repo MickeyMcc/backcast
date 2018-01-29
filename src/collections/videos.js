@@ -1,7 +1,9 @@
-var exampleVideos = this.exampleVideoData;
+
 
 var Videos = Backbone.Collection.extend({
+  
+  model: Video,
 
-  model: Video
+  url: 'data/exampleVideoData',
 
 });
