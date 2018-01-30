@@ -3,7 +3,7 @@ var VideoPlayerView = Backbone.View.extend({
   el: '.player',
 
   initialize: function() {
-    this.listenTo(this.collection, 'select', this.render);  //problem line
+    this.listenTo(this.collection, 'select', this.render); //problem line
   },
 
   render: function(currentVideo = this.collection.at(0)) {
