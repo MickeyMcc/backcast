@@ -7,24 +7,27 @@ var Videos = Backbone.Collection.extend({
   url: 'https://www.googleapis.com/youtube/v3/search',
 
   initialize: function () {
-    this.search();
+    this.listenTo(Backbone, 'search', function() {
+      this.search($('.form-control').val());
+    });
   },
 
-  search: function(query = 'cats') {
+  search: function(query) {
     this.fetch({
       data: {
-        'q': query,
-        'maxResults': '5',
-        'videoEmbeddable': 'true'
-        //'APIKey' : YOUTUBE_API_KEY
+        part: 'snippet',
+        key: window.YOUTUBE_API_KEY,
+        q: query,
+        maxResults: 7,
+        type: 'video',
+        videoEmbeddable: true,
       },
-      success: function(data) { console.log('success'); this.collection = data; },
-      error: function(data) {console.log('failure');}
+      success: function(data) { console.log('success'); },
+      error: function(data) { console.log('failure'); }
     });
   },
 
   parse: function(response) {
-    console.log('parsing');
-    return response.data;
+    return response.items;
   }
 });

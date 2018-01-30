@@ -1,7 +1,13 @@
 var SearchView = Backbone.View.extend({
 
-  el : '.search',
-  
+  events: {
+    'click button': 'triggerSearch'
+  },
+
+  triggerSearch: function() {
+    Backbone.trigger('search');
+  },
+
   render: function() {
     this.$el.html(this.template());
     return this;
