@@ -6,9 +6,8 @@ var VideoPlayerView = Backbone.View.extend({
     this.listenTo(this.collection, 'select', this.render);  //problem line
   },
 
-  render: function() {
-    var firstVid = this.collection.at(0);
-    this.$el.html(this.template(this.collection.at(0).attributes));
+  render: function(currentVideo = this.collection.at(0)) {
+    this.$el.html(this.template(currentVideo.attributes));
     return this;
   },
 
